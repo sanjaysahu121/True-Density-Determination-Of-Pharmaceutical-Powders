@@ -11,6 +11,8 @@ let powderSelected = false;
 let start_simulatio = false;
 let weightValue = 15.04;
 
+let W1 = 0, W2 = 0, W3 = 0, W4 = 0;
+let densityLiquid = 1.0;
 showPowder();
 function showPowder() {
   const powder = document.getElementById("select-powder").value;
@@ -19,9 +21,13 @@ function showPowder() {
   if (powder === "S") {
     powderImg.src = "./images/salicyclicacid.png";
     powderSelected = true;
+    W3 = 31.40; 
+    W4 = 52.65;
   } else if (powder === "B") {
     powderImg.src = "./images/Benzoicacid.png";
     powderSelected = true;
+    W3 = 30.0; 
+    W4 = 52.0;
   } else {
     document.getElementById("acid-powder").style.visibility = "hidden";
   }
@@ -34,16 +40,16 @@ function changeLang(el) {
 function showWeight(el) {
   switch (el.value) {
     case "e":
-      weightValue = 15.2;
+      weightValue = 25.0;
       break;
     case "pw":
-      weightValue = 31.4;
+      weightValue = 50.0;
       break;
     case "pp":
-      weightValue = 25.05;
+      weightValue = W3;
       break;
     default:
-      weightValue = 40.55;
+      weightValue = W4;
       break;
   }
 }
@@ -103,7 +109,7 @@ function showInstructions() {
       break;
     case 3:
       toggleBottle();
-      weightValue = 15.2;
+      weightValue = 25.0;
       measurWeight();
       break;
     case 4:
@@ -141,7 +147,7 @@ function showInstructions() {
           .getElementById("pycnometer")
           .classList.remove("water-in-pycnometer");
         toggleBottle();
-        weightValue = 31.4;
+        weightValue = 50.0;
         measurWeight();
       }, 2000);
       break;
@@ -162,7 +168,7 @@ function showInstructions() {
           .getElementById("pycnometer")
           .classList.remove("powder-in-pycnometer");
         toggleBottle();
-        weightValue = 25.4;
+        weightValue = 30.0;
         measurWeight();
       }, 6000);
 
@@ -205,7 +211,7 @@ function showInstructions() {
           .getElementById("pycnometer")
           .classList.remove("water-in-pycnometer");
         toggleBottle();
-        weightValue = 40.55;
+        weightValue = 52.0;
         measurWeight();
       }, 11000);
       break;
@@ -364,10 +370,10 @@ function observationTable() {
         </thead>
         <tbody>
           <tr>
-            <td style="border: .2vw solid black; padding: .8vw; width: 14vw">15.20g</td>
-            <td style="border: .2vw solid black; padding: .8vw; width: 14vw">31.40g</td>
-            <td style="border: .2vw solid black; padding: .8vw; width: 14vw">25.05g</td>
-            <td style="border: .2vw solid black; padding: .8vw; width: 14vw">40.55g</td>
+            <td style="border: .2vw solid black; padding: .8vw; width: 14vw">25.0g</td>
+            <td style="border: .2vw solid black; padding: .8vw; width: 14vw">50.0g</td>
+            <td style="border: .2vw solid black; padding: .8vw; width: 14vw">30.0g</td>
+            <td style="border: .2vw solid black; padding: .8vw; width: 14vw">52.0g</td>
           </tr>
         </tbody>
       </table>
@@ -424,17 +430,17 @@ function calculateDensity() {
         <td style="border: .2vw solid black; padding: .8vw; width: 34vw"> Volume of powder = volume of water displaced.</td>
      </tr>
      <tr><td style="border: .2vw solid black; padding: .8vw; width: 34vw">
-    V=(W4-W1)-(W3-W2).</td></tr>
+    V=(W4-W3)-(W2-W1)/density of water.</td></tr>
     <tr><td style="border: .2vw solid black; padding: .8vw; width: 34vw">
-    V=(40.55-15.20)-(25.05-31.40).</td></tr>
+    V=(52.0-30.0)-(50.0-25.0)/1</td></tr>
 
      <tr><td style="border: .2vw solid black; padding: .8vw; width: 34vw">
-    V=31.70cm³.<br></td></tr>
+    V=3.0 mL<br></td></tr>
     <tr><td style="border: .2vw solid black; padding: .8vw; width: 34vw">
-    True density = mass of powder(W4-W2)/volume of powder(V)..</td></tr>
+    True density = mass of powder(W3-W1)/volume of powder(V)..</td></tr>
     
     <tr><td style="border: .2vw solid black; padding: .8vw; width: 34vw">
-    <b>True density = 0.2886g/cm³.</b></td></tr>
+    <b>True density = 1.67g/mL.</b></td></tr>
     
     
     
